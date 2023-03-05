@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed:dev": "nodemon ./db/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/Richierichman15/JuiceBox/issues"
   },
-  "homepage": "https://github.com/Richierichman15/JuiceBox#readme"
+  "homepage": "https://github.com/Richierichman15/JuiceBox#readme",
+  "dependencies": {
+    "pg": "^8.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
 }
