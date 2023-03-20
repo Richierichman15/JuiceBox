@@ -2,10 +2,25 @@ const { Client } = require('pg');
 
 const {
     client,
-    getAllUsers
+    getAllUsers,
+    createUser
 } = require('./index');
 
-const client = new Client('postgres:localhost:5432/juicebox-dev');
+const {client} = new Client('postgres:localhost:5432/juicebox-dev');
+
+const createInitialUsers = async() => {
+    try {
+        console.log("Starting to create users...");
+
+        const rows = await createUser({ username: 'albert', password: 'bertie99'});
+
+        console.log("Finished creating users!");
+        return rows;
+    } catch (err) {
+        console.log("Error creating users!");
+        throw err
+    }
+}
 
 const dropTables = async() => {
     try {
@@ -43,6 +58,7 @@ const rebuildDB = async() => {
     try {
         client.connect();
 
+        await createInitialUsers();
         await dropTables();
         await createTables();
     } catch (err) {
